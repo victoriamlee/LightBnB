@@ -21,7 +21,7 @@ const getUserWithEmail = function(email) {
   return pool.query(`
   SELECT * 
   FROM users
-  WHERE email = $1
+  WHERE email = $1;
   `, [email])
   .then(res => res.rows[0])
 }
@@ -36,7 +36,7 @@ const getUserWithId = function(id) {
   return pool.query(`
   SELECT * 
   FROM users
-  WHERE id = $1
+  WHERE id = $1;
   `, [id])
   .then(res => res.rows[0])
 }
@@ -96,7 +96,7 @@ const getAllProperties = function(options, limit = 10) {
   let queryString = `
   SELECT properties.*, avg(property_reviews.rating) as average_rating
   FROM properties
-  JOIN property_reviews ON properties.id = property_id
+  JOIN property_reviews ON properties.id = property_id;
   `;
   
   //3
@@ -125,7 +125,7 @@ const getAllProperties = function(options, limit = 10) {
 
   //4
   queryString += `
-  GROUP BY properties.id
+  GROUP BY properties.id 
   `;
 
   if (options.minimum_rating) {
